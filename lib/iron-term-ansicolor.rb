@@ -19,9 +19,15 @@ module Kernel
       when 30
         System::Console.ForegroundColor = System::ConsoleColor.Black
       when 31 
-        System::Console.ForegroundColor = System::ConsoleColor.Red
+        System::Console.ForegroundColor = System::ConsoleColor.DarkRed
       when 32
-        System::Console.ForegroundColor = System::ConsoleColor.Green
+        System::Console.ForegroundColor = System::ConsoleColor.DarkGreen
+    	when 33
+    		System::Console.ForegroundColor = System::ConsoleColor.DarkYellow
+  		when 34
+  			System::Console.ForegroundColor = System::ConsoleColor.DarkBlue
+			when 35
+				System::Console.ForegroundColor = System::ConsoleColor.DarkMagenta
       end
       original_puts(matches[2])
       System::Console.ForegroundColor = originalColor
