@@ -1,20 +1,20 @@
 require 'rubygems'
 require 'rake'
 
-begin
-  require 'jeweler'
-  Jeweler::Tasks.new do |gem|
-    gem.name = "iron-term-ansicolor"
-    gem.summary = %Q{TODO}
-    gem.email = "will@hotgazpacho.org"
-    gem.homepage = "http://github.com/hotgazpacho/iron-term-ansicolor"
-    gem.authors = ["hotgazpacho"]
-    # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
-  end
+#begin
+#  require 'jeweler'
+#  Jeweler::Tasks.new do |gem|
+#    gem.name = "iron-term-ansicolor"
+#    gem.summary = %Q{TODO}
+#    gem.email = "will@hotgazpacho.org"
+#    gem.homepage = "http://github.com/hotgazpacho/iron-term-ansicolor"
+#    gem.authors = ["hotgazpacho"]
+#    # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
+#  end
 
-rescue LoadError
-  puts "Jeweler (or a dependency) not available. Install it with: sudo gem install jeweler"
-end
+#rescue LoadError
+#  puts "Jeweler (or a dependency) not available. Install it with: sudo gem install jeweler"
+#end
 
 require 'spec/rake/spectask'
 Spec::Rake::SpecTask.new(:spec) do |spec|
