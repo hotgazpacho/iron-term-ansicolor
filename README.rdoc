@@ -1,0 +1,16 @@
+= iron-term-ansicolor
+
+iron-term-console is a library for IronRuby that makes use of the .Net framework
+System.Console and related classes to provide colored output for ANSI formatted
+strings.
+
+For the Ruby OneClick installer, a package called win32console exists to provide
+this functionality. It makes calls to the Win32 API, including bit twiddling,
+to provide colored console output for that Ruby distribution. In IronRuby, we
+have direct access to the .Net Base Class Library. Rather than writing C# code 
+to create an IronRuby module to interact with a C++ API, this library directly
+uses the .Net BCL, and write the code directly in Ruby.
+
+== Copyright
+
+Copyright (c) 2009 hotgazpacho. See LICENSE for details.
