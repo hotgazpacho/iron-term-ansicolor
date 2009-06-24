@@ -16,7 +16,9 @@ module Kernel
       color_code = matches[1]
       case color_code.to_i
         when 31 
-          System::Console.ForegroundColor = System::ConsoleColor.Red  
+          System::Console.ForegroundColor = System::ConsoleColor.Red
+        when 32
+          System::Console.ForegroundColor = System::ConsoleColor.Green
       end
       original_puts(matches[2])
       System::Console.ForegroundColor = originalColor
