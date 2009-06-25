@@ -53,5 +53,21 @@ describe "IronTermANSIColor" do
     System::Console.should_receive(:ForegroundColor=).ordered.with(@original_color)
     puts string
   end
+  
+  it "should set the foreground color to dark cyan when doing a puts of a string with only cyan ANSI control code and reset the foreground color after" do
+    string = "Cyan".cyan
+    System::Console.should_receive(:ForegroundColor).once.and_return(@original_color)
+    System::Console.should_receive(:ForegroundColor=).ordered.with(System::ConsoleColor.DarkCyan)
+    System::Console.should_receive(:ForegroundColor=).ordered.with(@original_color)
+    puts string
+  end
+  
+  it "should set the foreground color to gray when doing a puts of a string with only white ANSI control code and reset the foreground color after" do
+    string = "Gray".white
+    System::Console.should_receive(:ForegroundColor).once.and_return(@original_color)
+    System::Console.should_receive(:ForegroundColor=).ordered.with(System::ConsoleColor.Gray)
+    System::Console.should_receive(:ForegroundColor=).ordered.with(@original_color)
+    puts string
+  end
 end
 
