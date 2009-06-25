@@ -1,12 +1,12 @@
 require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
-describe "IronTermANSIColor" do
+describe "IronTermANSIColor", "when given a string with ANSI foreground color control characters" do
   
   before(:all) do
     @original_color = System::ConsoleColor.Gray
   end
   
-  it "should set the foreground color to black when doing a puts of a string with only black ANSI control code and reset the foreground color after" do
+  it "should set the foreground color to black when doing a puts of a string with only blackforeground ANSI control code and reset the foreground color after" do
     string = "Black".black
     System::Console.should_receive(:ForegroundColor).once.and_return(@original_color)
     System::Console.should_receive(:ForegroundColor=).ordered.with(System::ConsoleColor.Black)
@@ -14,7 +14,7 @@ describe "IronTermANSIColor" do
     puts string
   end
   
-  it "should set the foreground color to dark red when doing a puts of a string with only red ANSI control code and reset the foreground color after" do
+  it "should set the foreground color to dark red when doing a puts of a string with only redforeground ANSI control code and reset the foreground color after" do
     string = "Red".red
     System::Console.should_receive(:ForegroundColor).once.and_return(@original_color)
     System::Console.should_receive(:ForegroundColor=).ordered.with(System::ConsoleColor.DarkRed)
@@ -22,7 +22,7 @@ describe "IronTermANSIColor" do
     puts string
   end
   
-  it "should set the foreground color to dark green when doing a puts of a string with only green ANSI control code and reset the foreground color after" do
+  it "should set the foreground color to dark green when doing a puts of a string with only greenforeground ANSI control code and reset the foreground color after" do
     string = "Green".green
     System::Console.should_receive(:ForegroundColor).once.and_return(@original_color)
     System::Console.should_receive(:ForegroundColor=).ordered.with(System::ConsoleColor.DarkGreen)
@@ -30,7 +30,7 @@ describe "IronTermANSIColor" do
     puts string
   end
   
-  it "should set the foreground color to dark yellow when doing a puts of a string with only yellow ANSI control code and reset the foreground color after" do
+  it "should set the foreground color to dark yellow when doing a puts of a string with only yellowforeground ANSI control code and reset the foreground color after" do
     string = "Yellow".yellow
     System::Console.should_receive(:ForegroundColor).once.and_return(@original_color)
     System::Console.should_receive(:ForegroundColor=).ordered.with(System::ConsoleColor.DarkYellow)
@@ -38,7 +38,7 @@ describe "IronTermANSIColor" do
     puts string
   end
   
-  it "should set the foreground color to dark blue when doing a puts of a string with only blue ANSI control code and reset the foreground color after" do
+  it "should set the foreground color to dark blue when doing a puts of a string with only blueforeground ANSI control code and reset the foreground color after" do
     string = "Blue".blue
     System::Console.should_receive(:ForegroundColor).once.and_return(@original_color)
     System::Console.should_receive(:ForegroundColor=).ordered.with(System::ConsoleColor.DarkBlue)
@@ -46,7 +46,7 @@ describe "IronTermANSIColor" do
     puts string
   end
   
-  it "should set the foreground color to dark magenta when doing a puts of a string with only magenta ANSI control code and reset the foreground color after" do
+  it "should set the foreground color to dark magenta when doing a puts of a string with only magentaforeground ANSI control code and reset the foreground color after" do
     string = "Magenta".magenta
     System::Console.should_receive(:ForegroundColor).once.and_return(@original_color)
     System::Console.should_receive(:ForegroundColor=).ordered.with(System::ConsoleColor.DarkMagenta)
@@ -54,7 +54,7 @@ describe "IronTermANSIColor" do
     puts string
   end
   
-  it "should set the foreground color to dark cyan when doing a puts of a string with only cyan ANSI control code and reset the foreground color after" do
+  it "should set the foreground color to dark cyan when doing a puts of a string with only cyanforeground ANSI control code and reset the foreground color after" do
     string = "Cyan".cyan
     System::Console.should_receive(:ForegroundColor).once.and_return(@original_color)
     System::Console.should_receive(:ForegroundColor=).ordered.with(System::ConsoleColor.DarkCyan)
@@ -62,7 +62,7 @@ describe "IronTermANSIColor" do
     puts string
   end
   
-  it "should set the foreground color to gray when doing a puts of a string with only white ANSI control code and reset the foreground color after" do
+  it "should set the foreground color to gray when doing a puts of a string with only whiteforeground ANSI control code and reset the foreground color after" do
     string = "Gray".white
     System::Console.should_receive(:ForegroundColor).once.and_return(@original_color)
     System::Console.should_receive(:ForegroundColor=).ordered.with(System::ConsoleColor.Gray)
