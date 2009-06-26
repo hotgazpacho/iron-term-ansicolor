@@ -12,11 +12,17 @@ module Kernel
   
   def puts(*args)
     args.each do |arg|
+      
+      fg_color = System::Console.ForegroundColor
+      bg_color = System::Console.BackgroundColor
+      
       data = extract_ansi_data(arg)
-      original_fg_color = System::Console.ForegroundColor
-      System::Console.ForegroundColor = data[:foreground]
+      
+      System::Console.ForegroundColor = data[:foreground] || fg_color
+      System::Console.BackgroundColor = data[:background] || bg_color
       original_puts(data[:text])
-      System::Console.ForegroundColor = original_fg_color
+      System::Console.BackgroundColor = bg_color
+      System::Console.ForegroundColor = fg_color
     end
     nil
   end
@@ -42,10 +48,30 @@ module Kernel
 		  fg_color = System::ConsoleColor.DarkCyan
 	  when 37
 	    fg_color = System::ConsoleColor.Gray
+    when 40
+      bg_color = System::ConsoleColor.Black
+    when 41
+      bg_color = System::ConsoleColor.DarkRed
+    when 42
+      bg_color = System::ConsoleColor.DarkGreen
+    when 43
+      bg_color = System::ConsoleColor.DarkYellow
+    when 44
+      bg_color = System::ConsoleColor.DarkBlue
+    when 45
+      bg_color = System::ConsoleColor.DarkMagenta
+    when 46
+      bg_color = System::ConsoleColor.DarkCyan
+    when 47
+      bg_color = System::ConsoleColor.Gray
+    else
+      fg_color = System::Console.ForegroundColor
+      bg_color = System::Console.BackgroundColor
     end
     
     { 
-      :foreground => fg_color, 
+      :foreground => fg_color,
+      :background => bg_color,
       :text => matches[2]  
     }
   end
