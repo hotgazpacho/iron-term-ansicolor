@@ -1,78 +1,73 @@
-require 'term/ansicolor'
 require 'mscorlib'
+require 'term/ansicolor'
 
-ANSI_REGEXP = /\e\[(.+?)m(.+?)(?=(\e\[0m|\z))/
+## add the trailing m  because some of the rspec output spans multiple lines
+ANSI_REGEXP = /\e\[(.+?)m(.+?)(?=(\e\[0m|\z))/m
+SsC=System::ConsoleColor
+SC = System::Console
 
 class String
   include Term::ANSIColor
 end
 
-module Kernel
+module IronTermAnsiColor
+  module Version
+    MAJOR=0
+    MINOR=0
+    PATCH=1
+    STRING="#{MAJOR}.#{MINOR}.#{PATCH}"
+  end
+end
+
+class IO
+  alias_method :original_write, :write
   alias_method :original_puts, :puts
   
   def puts(*args)
-    args.each do |arg|
-      
-      fg_color = System::Console.ForegroundColor
-      bg_color = System::Console.BackgroundColor
-      
-      data = extract_ansi_data(arg)
-      
-      System::Console.ForegroundColor = data[:foreground] || fg_color
-      System::Console.BackgroundColor = data[:background] || bg_color
-      original_puts(data[:text])
-      System::Console.BackgroundColor = bg_color
-      System::Console.ForegroundColor = fg_color
-    end
+    rewrite(*args) { |text| original_puts text }
     nil
   end
-  
-  private
-  def extract_ansi_data(arg)
-    matches = ANSI_REGEXP.match(arg)
-    color_code = matches[1]
-    case color_code.to_i
-    when 30
-      fg_color = System::ConsoleColor.Black
-    when 31 
-      fg_color = System::ConsoleColor.DarkRed
-    when 32
-      fg_color = System::ConsoleColor.DarkGreen
-  	when 33
-  		fg_color = System::ConsoleColor.DarkYellow
-		when 34
-			fg_color = System::ConsoleColor.DarkBlue
-		when 35
-			fg_color = System::ConsoleColor.DarkMagenta
-		when 36
-		  fg_color = System::ConsoleColor.DarkCyan
-	  when 37
-	    fg_color = System::ConsoleColor.Gray
-    when 40
-      bg_color = System::ConsoleColor.Black
-    when 41
-      bg_color = System::ConsoleColor.DarkRed
-    when 42
-      bg_color = System::ConsoleColor.DarkGreen
-    when 43
-      bg_color = System::ConsoleColor.DarkYellow
-    when 44
-      bg_color = System::ConsoleColor.DarkBlue
-    when 45
-      bg_color = System::ConsoleColor.DarkMagenta
-    when 46
-      bg_color = System::ConsoleColor.DarkCyan
-    when 47
-      bg_color = System::ConsoleColor.Gray
-    else
-      fg_color = System::Console.ForegroundColor
-      bg_color = System::Console.BackgroundColor
-    end
-    
-    { 
-      :foreground => fg_color,
-      :background => bg_color,
-      :text => matches[2]  
-    }
+
+  def write(*args)
+    rewrite(*args) { |text| original_write text }
   end
+
+  private
+    def extract_ansi_data(arg)
+      fg_color_map =    Hash[30,SsC.black,31,SsC.red,32,SsC.dark_green,33,SsC.dark_yellow,34,SsC.dark_blue,35,SsC.dark_magenta,
+        36,SsC.dark_cyan,37,SsC.gray]
+      bg_color_map = Hash[40,SsC.black,41,SsC.dark_red,42,SsC.dark_green,43,SsC.dark_yellow,44,SsC.dark_blue,45,SsC.dark_magenta,
+        46,SsC.dark_cyan,47,SsC.gray]
+    
+      matches = ANSI_REGEXP.match(arg)
+    
+      fg_color = fg_color_map[matches[1].to_i] || SC.foreground_color
+      bg_color = bg_color_map[matches[1].to_i] || SC.background_color
+    
+      { :foreground => fg_color, :background => bg_color,:text => matches[2]}
+    end
+  
+    def rewrite(*args, &b)
+      raise ArgumentError, "needs a block" unless b
+      result=0
+      args.each do |arg|
+        fg_color = SC.foreground_color
+        bg_color = SC.background_color
+
+        ##dkb
+        data =  if ANSI_REGEXP =~ arg
+                  extract_ansi_data(arg)
+                else
+                  {:text => arg}
+                end  
+
+        SC.foreground_color = data[:foreground] || fg_color
+        SC.background_color = data[:background] || bg_color
+        result = b.call data[:text]
+        SC.background_color = bg_color
+        SC.foreground_color = fg_color
+      end
+      result
+    end
+
 end
