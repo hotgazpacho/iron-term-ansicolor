@@ -33,18 +33,18 @@ class IO
   end
 
   private
-    def extract_ansi_data(arg)
+    def extract_ansi_data(clr, txt)
       fg_color_map =    Hash[30,SsC.black,31,SsC.red,32,SsC.dark_green,33,SsC.dark_yellow,34,SsC.dark_blue,35,SsC.dark_magenta,
         36,SsC.dark_cyan,37,SsC.gray]
       bg_color_map = Hash[40,SsC.black,41,SsC.dark_red,42,SsC.dark_green,43,SsC.dark_yellow,44,SsC.dark_blue,45,SsC.dark_magenta,
         46,SsC.dark_cyan,47,SsC.gray]
     
-      matches = ANSI_REGEXP.match(arg)
+      #matches = ANSI_REGEXP.match(arg)
     
-      fg_color = fg_color_map[matches[1].to_i] || SC.foreground_color
-      bg_color = bg_color_map[matches[1].to_i] || SC.background_color
+      fg_color = fg_color_map[clr] || SC.foreground_color
+      bg_color = bg_color_map[clr] || SC.background_color
     
-      { :foreground => fg_color, :background => bg_color,:text => matches[2]}
+      { :foreground => fg_color, :background => bg_color,:text => txt}
     end
   
     def rewrite(*args, &b)
@@ -56,7 +56,7 @@ class IO
 
         ##dkb
         data =  if ANSI_REGEXP =~ arg
-                  extract_ansi_data(arg)
+                  extract_ansi_data($1.to_i, $2)
                 else
                   {:text => arg}
                 end  
