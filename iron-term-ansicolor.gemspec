@@ -4,7 +4,7 @@
 Gem::Specification.new do |s|
   s.authors = ["Will Green", "David Blackmon", "Ivan Porto Carrero"]
   s.bindir = "bin"
-  s.add_dependency "term-ansicolor", ">= 1.0.4, runtime"
+  s.add_dependency "term-ansicolor", ">= 1.0.4"
   s.description = "iron-term-ansicolor brings color output for RSpec and the likes to IronRuby."
   s.email = "will@hotgazpacho.org"
   s.extra_rdoc_files = ["README.rdoc"]
