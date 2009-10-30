@@ -13,4 +13,4 @@ uses the .Net BCL, and write the code directly in Ruby.
 
 == Copyright
 
-Copyright (c) 2009 hotgazpacho. See LICENSE for details.
+Copyright (c) 2009 Will Green, Ivan Porto Carrero, David Blackmon. See LICENSE for details.

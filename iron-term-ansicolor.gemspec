@@ -4,13 +4,13 @@
 Gem::Specification.new do |s|
   s.authors = ["Will Green", "David Blackmon", "Ivan Porto Carrero"]
   s.bindir = "bin"
-  s.add_dependency "ironruby-win32console", ">= 0.2.0, runtime"
+  s.add_dependency "term-ansicolor", ">= 1.0.4, runtime"
   s.description = "iron-term-ansicolor brings color output for RSpec and the likes to IronRuby."
   s.email = "will@hotgazpacho.org"
   s.extra_rdoc_files = ["README.rdoc"]
   s.files = ["README.rdoc",
  "Rakefile",
- "caricature.gemspec",
+ "iron-term-ansicolor.gemspec",
  "lib/iron-term-ansicolor.rb",
  "spec/iron-term-ansicolor_simple_background_spec.rb",
  "spec/iron-term-ansicolor_simple_foreground_spec.rb",

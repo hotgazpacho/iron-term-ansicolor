@@ -3,20 +3,20 @@ require 'rake'
 require 'fileutils'
 require 'rake/rdoctask'
 require 'lib/iron-term-ansicolor'
-#begin
-#  require 'jeweler'
-#  Jeweler::Tasks.new do |gem|
-#    gem.name = "iron-term-ansicolor"
-#    gem.summary = %Q{TODO}
-#    gem.email = "will@hotgazpacho.org"
-#    gem.homepage = "http://github.com/hotgazpacho/iron-term-ansicolor"
-#    gem.authors = ["hotgazpacho"]
-#    # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
-#  end
+begin
+ require 'jeweler'
+ Jeweler::Tasks.new do |gem|
+   gem.name = "iron-term-ansicolor"
+   gem.summary = %Q{TODO}
+   gem.email = "will@hotgazpacho.org"
+   gem.homepage = "http://github.com/hotgazpacho/iron-term-ansicolor"
+   gem.authors = ["hotgazpacho","casualjim"]
+   # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
+ end
 
-#rescue LoadError
-#  puts "Jeweler (or a dependency) not available. Install it with: sudo gem install jeweler"
-#end
+rescue LoadError
+ puts "Jeweler (or a dependency) not available. Install it with: sudo gem install jeweler"
+end
 
 require 'spec/rake/spectask'
 Spec::Rake::SpecTask.new(:spec) do |spec|
@@ -67,7 +67,7 @@ RDOC_OPTIONS  = [
 RDOC_FILES    = (%w( README.rdoc)).sort
 
 # The full file list used for rdocs, tarballs, gems, and for generating the xmpp4r.gemspec.
-PKG_FILES     = (%w( Rakefile caricature.gemspec ) + RDOC_FILES + Dir["{lib,spec}/**/*"]).sort
+PKG_FILES     = (%w( Rakefile iron-term-ansicolor.gemspec ) + RDOC_FILES + Dir["{lib,spec}/**/*"]).sort
 
 # RDOC
 #######
@@ -126,7 +126,7 @@ begin
     s.extra_rdoc_files = RDOC_FILES
     s.rdoc_options = RDOC_OPTIONS
     s.required_ruby_version = ">= 1.8.6"  
-    s.add_dependency 'ironruby-win32console', ">= 0.2.0"
+    s.add_dependency 'term-ansicolor', ">= 1.0.4"
   end
 
   Rake::GemPackageTask.new(spec) do |pkg|
@@ -196,7 +196,7 @@ rescue LoadError
 ###
   Packaging Warning : RubyGems is apparently not installed on this
   system and any file add/remove/rename will not
-  be auto-updated in the 'caricature.gemspec' when you run any
+  be auto-updated in the 'iron-term-ansicolor.gemspec' when you run any
   package tasks.  All such file changes are recommended
   to be packaged on a system with RubyGems installed
   if you intend to push commits to the Git repo so the
