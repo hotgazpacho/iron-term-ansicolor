@@ -73,8 +73,14 @@ class IO
   include IronTermAnsiColor
   
   def puts(*args)
-    args.each {|str| write(str)}
-    syswrite "\n"
+    if args.empty?
+      syswrite "\n"
+    else
+      args.each do |str| 
+        write(str)
+        syswrite "\n"
+      end
+    end
     nil
   end
   
