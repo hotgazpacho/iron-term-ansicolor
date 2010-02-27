@@ -15,7 +15,7 @@ describe "IronTermANSIColor", "when given a string with ANSI foreground color co
   
   it "should set the foreground color to dark red when doing a puts of a string with only redforeground ANSI control code and reset the foreground color after" do
     string = "Red".red
-    System::Console.should_receive(:foreground_color=).once.with(System::ConsoleColor.red)
+    System::Console.should_receive(:foreground_color=).once.with(System::ConsoleColor.dark_red)
     System::Console.should_receive(:reset_color).at_least(:once)
     puts string
   end
