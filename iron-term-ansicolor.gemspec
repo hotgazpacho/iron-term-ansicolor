@@ -2,10 +2,10 @@
 # RUN : 'rake gem:update_gemspec'
 
 Gem::Specification.new do |s|
-  s.authors = ["Will Green", "David Blackmon", "Ivan Porto Carrero"]
+  s.authors = ["Will Green", "David Blackmon", "Ivan Porto Carrero", "Danny Coates"]
   s.bindir = "bin"
   s.add_dependency "term-ansicolor", ">= 1.0.4"
-  s.description = "iron-term-ansicolor brings color output for RSpec and the likes to IronRuby."
+  s.description = "iron-term-ansicolor brings color output for RSpec, Cucumber, and the likes to IronRuby."
   s.email = "will@hotgazpacho.org"
   s.extra_rdoc_files = ["README.rdoc"]
   s.files = ["README.rdoc",
@@ -27,6 +27,6 @@ Gem::Specification.new do |s|
   s.rubyforge_project = "iron-term-ansicolor"
   s.rubygems_version = "1.3.5"
   s.specification_version = 3
-  s.summary = "iron-term-ansicolor brings color output for RSpec and the likes to IronRuby."
-  s.version = "0.0.1"
+  s.summary = "iron-term-ansicolor brings color output for RSpec, Cucumber, and the likes to IronRuby. It leverages the .Net BCL to provide some semblance of colored output"
+  s.version = "0.0.2"
 end
