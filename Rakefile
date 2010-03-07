@@ -3,21 +3,6 @@ require 'rake'
 require 'fileutils'
 require 'rake/rdoctask'
 require 'lib/iron-term-ansicolor'
-begin
- require 'jeweler'
- Jeweler::Tasks.new do |gem|
-   gem.name = "iron-term-ansicolor"
-   gem.summary = %Q{TODO}
-   gem.email = "will@hotgazpacho.org"
-   gem.homepage = "http://github.com/hotgazpacho/iron-term-ansicolor"
-   gem.authors = ["hotgazpacho","casualjim"]
-   # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
- end
-
-rescue LoadError
- puts "Jeweler (or a dependency) not available. Install it with: sudo gem install jeweler"
-end
-
 require 'spec/rake/spectask'
 Spec::Rake::SpecTask.new(:spec) do |spec|
   spec.libs << 'lib' << 'spec'
@@ -45,10 +30,10 @@ PKG_VERSION   = if File.exist?('VERSION.yml')
 else
   version = IronTermAnsiColor::Version::STRING
 end
-AUTHORS       = ['Will Green', 'David Blackmon', 'Ivan Porto Carrero']
+AUTHORS       = ['Will Green', 'David Blackmon', 'Ivan Porto Carrero', 'Danny Coates']
 EMAIL         = "will@hotgazpacho.org"
 HOMEPAGE      = "http://github.com/hotgazpacho/iron-term-ansicolor"
-SUMMARY       = "iron-term-ansicolor brings color output for RSpec and the likes to IronRuby."
+SUMMARY       = "iron-term-ansicolor brings color output to IronRuby on Windows"
 
 # These are the common rdoc options that are shared between generation of
 # rdoc files using BOTH 'rake rdoc' and the installation by users of a
@@ -68,6 +53,8 @@ RDOC_FILES    = (%w( README.rdoc)).sort
 
 # The full file list used for rdocs, tarballs, gems, and for generating the xmpp4r.gemspec.
 PKG_FILES     = (%w( Rakefile iron-term-ansicolor.gemspec ) + RDOC_FILES + Dir["{lib,spec}/**/*"]).sort
+
+TEST_FILES    = Dir["spec/**/*"].sort
 
 # RDOC
 #######
@@ -117,16 +104,17 @@ begin
     s.rubyforge_project = PKG_NAME
     s.summary = SUMMARY
     s.description = s.summary
-    s.platform = Gem::Platform::RUBY
+    s.platform = Gem::Platform::CURRENT #Gem::Platform::RUBY
     s.require_path = 'lib'
     s.executables = []
     s.files = PKG_FILES
-    s.test_files = []
+    s.test_files = TEST_FILES
     s.has_rdoc = true
     s.extra_rdoc_files = RDOC_FILES
     s.rdoc_options = RDOC_OPTIONS
     s.required_ruby_version = ">= 1.8.6"  
     s.add_dependency 'term-ansicolor', ">= 1.0.4"
+    s.add_development_dependency 'rspec'
   end
 
   Rake::GemPackageTask.new(spec) do |pkg|
@@ -222,5 +210,30 @@ unless defined? Gem
 ###
 EOF
   end
+end
+
+begin
+ require 'jeweler'
+ Jeweler::Tasks.new do |gem|
+   gem.name = PKG_NAME
+   gem.summary = SUMMARY
+   gem.description = SUMMARY
+   gem.email = EMAIL
+   gem.homepage = HOMEPAGE 
+   gem.authors = AUTHORS
+   gem.platform = Gem::Platform::CURRENT
+   gem.required_ruby_version = ">= 1.8.6" 
+   gem.add_dependency 'term-ansicolor', ">= 1.0.4"
+   gem.add_development_dependency 'rspec'
+   gem.files = PKG_FILES
+   gem.test_files = TEST_FILES
+   gem.has_rdoc = true
+   gem.extra_rdoc_files = RDOC_FILES
+   gem.rdoc_options = RDOC_OPTIONS
+   # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
+ end
+
+rescue LoadError
+ puts "Jeweler (or a dependency) not available. Install it with: sudo gem install jeweler"
 end
 

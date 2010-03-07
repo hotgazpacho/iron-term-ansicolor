@@ -1,4 +1,8 @@
-require 'mscorlib'
+begin
+  require 'mscorlib'
+rescue LoadError
+  print "iron-term-ansicolor will only work on IronRuby"
+end
 require 'term/ansicolor'
 
 class String
