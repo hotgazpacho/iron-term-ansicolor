@@ -104,7 +104,7 @@ begin
     s.rubyforge_project = PKG_NAME
     s.summary = SUMMARY
     s.description = s.summary
-    s.platform = Gem::Platform::CURRENT #Gem::Platform::RUBY
+    s.platform = "universal-.net"#Gem::Platform::CURRENT #Gem::Platform::RUBY
     s.require_path = 'lib'
     s.executables = []
     s.files = PKG_FILES
@@ -221,7 +221,7 @@ begin
    gem.email = EMAIL
    gem.homepage = HOMEPAGE 
    gem.authors = AUTHORS
-   gem.platform = Gem::Platform::CURRENT
+   gem.platform = "universal-.net"#Gem::Platform::CURRENT
    gem.required_ruby_version = ">= 1.8.6" 
    gem.add_dependency 'term-ansicolor', ">= 1.0.4"
    gem.add_development_dependency 'rspec'

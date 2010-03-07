@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
   s.homepage = "http://github.com/hotgazpacho/iron-term-ansicolor"
   s.loaded = false
   s.name = "iron-term-ansicolor"
-  s.platform = "universal-.net-2.0"
+  s.platform = "universal-.net"
   s.rdoc_options = ["--quiet", "--title", "iron-term-ansicolor brings color output to IronRuby on Windows", "--main", "README.rdoc", "--line-numbers", "--format", "darkfish"]
   s.require_paths = ["lib"]
   s.required_ruby_version = ">= 1.8.6"
