@@ -7,12 +7,6 @@ end
 
 module IronTermAnsiColor
   include System
-  #module Version
-  #  MAJOR=0
-  #  MINOR=0
-  #  PATCH=4
-  #  STRING="#{MAJOR}.#{MINOR}.#{PATCH}"
-  #end
   
   ANSI_REGEXP = /\e\[([1349][0-7][0-7]?|[01])m/
   
