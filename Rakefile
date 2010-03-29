@@ -30,7 +30,7 @@ PKG_VERSION   = if File.exist?('VERSION.yml')
 else
   version = IronTermAnsiColor::Version::STRING
 end
-PKG_PLATFORM  = Gem::Platform.new(["universal", ".net"])
+PKG_PLATFORM  = Gem::Platform.new(["universal", "dotnet"])
 AUTHORS       = ['Will Green', 'David Blackmon', 'Ivan Porto Carrero', 'Danny Coates']
 EMAIL         = "will@hotgazpacho.org"
 HOMEPAGE      = "http://github.com/hotgazpacho/iron-term-ansicolor"
